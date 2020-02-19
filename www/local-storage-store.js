@@ -112,10 +112,10 @@ WebStorageCookieStore.prototype._isOnPath = function(cookiePath, urlPath) {
 WebStorageCookieStore.prototype.putCookie = function(cookie, callback) {
      var store = this._readStore();
 
-     _.set(store, [cookie.domain, cookie.path, cookie.key], cookie);
-     this._writeStore(store);
-     callback(null);
-};
+    _.setWith(store, [cookie.domain, cookie.path, cookie.key], cookie, Object);
+    this._writeStore(store);
+    callback(null);
+  };
 
 WebStorageCookieStore.prototype.updateCookie = function(oldCookie, newCookie, callback) {
     this.putCookie(newCookie, callback);
